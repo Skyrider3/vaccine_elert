@@ -7,16 +7,16 @@ import datetime
 import smtplib
 
 #Define Constants
-PINCODE = "<ENTER YOUR PINCODE>" #Example 600040
-MY_EMAIL = "<ENTER YOUR EMAIL ID>" #From this mail id, the alerts will be sent
-MY_PASSWORD = "<ENTER YOUR PASSWORD>" #Enter the email id's password
+PINCODE = "<ENTER YOUR PINCODE>" 
+MY_EMAIL = "<ENTER YOUR EMAIL ID>" 
+MY_PASSWORD = "<ENTER YOUR PASSWORD>" 
 
 #Derive the date and url
-#url source is Cowin API - https://apisetu.gov.in/public/api/cowin
 today = time.strftime("%d/%m/%Y")
+#url source is Cowin API - https://apisetu.gov.in/public/api/cowin
 url = f"https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={PINCODE}&date={today}"
 
-#Write a loop which checks for every 1000 seconds
+#Write a loop which checks for every 60 seconds
 while True:
     #Start a session
     with requests.session() as session:
@@ -41,4 +41,4 @@ while True:
                             to_addrs=["<ENTER THE MAIL ID TO WHICH THE ALERTS HAS TO BE SENT>"], #for multiple receipients, add another email id after a comma in the list
                             msg=message_string
                         )
-        time.sleep(1000)
+        time.sleep(60)#change time interval to refresh results here
