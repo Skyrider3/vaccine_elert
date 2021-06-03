@@ -42,3 +42,6 @@ while True:
                             msg=message_string
                         )
         time.sleep(60)#change time interval to refresh results here
+
+
+Print("Vaccine updates")
